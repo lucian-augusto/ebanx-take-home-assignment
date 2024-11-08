@@ -18,6 +18,8 @@ public class Balance extends AbstractEntity {
 
     private BigDecimal amount;
 
+    Balance() {};
+
     public Balance(Account account) {
         this.account = account;
     }
