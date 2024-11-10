@@ -19,7 +19,8 @@ public class DefaultAccountService implements AccountService {
 
     @Override
     public Account createAccount(String accountNumber) {
-        return new Account(accountNumber);
+        Account account = new Account(accountNumber);
+        return repository.save(account);
     }
 
     public Optional<Account> findByAccountNumber(String accountNumber) {

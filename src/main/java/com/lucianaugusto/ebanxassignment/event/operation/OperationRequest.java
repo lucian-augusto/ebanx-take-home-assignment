@@ -2,7 +2,7 @@ package com.lucianaugusto.ebanxassignment.event.operation;
 
 import java.math.BigDecimal;
 
-public class OperationRequest{
+public class OperationRequest {
     private final OperationTypeEnum type;
     private final BigDecimal amount;
     private String originAccountNumber;
