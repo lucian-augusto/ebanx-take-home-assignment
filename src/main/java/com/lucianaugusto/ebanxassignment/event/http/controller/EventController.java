@@ -2,6 +2,8 @@ package com.lucianaugusto.ebanxassignment.event.http.controller;
 
 import com.lucianaugusto.ebanxassignment.event.http.enums.EventTypeEnum;
 import com.lucianaugusto.ebanxassignment.event.http.request.EventHttpRequest;
+import com.lucianaugusto.ebanxassignment.event.http.response.EventHttpResponse;
+import com.lucianaugusto.ebanxassignment.event.http.response.EventAccountInfo;
 import com.lucianaugusto.ebanxassignment.event.operation.OperationTypeEnum;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +32,12 @@ public class EventController {
         if (!request.validate()) {
             return ResponseEntity.badRequest().build();
         }
-        return ResponseEntity.ok(eventOperationMap);
+
+        OperationRequest operationRequest = new OperationRequest(
+                eventOperationMap.get(request.type()),
+                request.amount()
+        );
+        return ResponseEntity.ok(new EventHttpResponse(null, new EventAccountInfo("1", BigDecimal.TEN)));
     }
 
     private void populateEventOperationMap() {
