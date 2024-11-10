@@ -7,4 +7,5 @@ import java.math.BigDecimal;
 
 public interface BalanceService {
     Balance createBalance(Account account, BigDecimal amount);
+    Balance deposit(Balance balance, BigDecimal amount);
 }

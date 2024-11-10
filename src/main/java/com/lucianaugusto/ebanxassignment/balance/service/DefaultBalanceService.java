@@ -21,4 +21,10 @@ public class DefaultBalanceService implements BalanceService {
         Balance balance = new Balance(account, amount);
         return repository.save(balance);
     }
+
+    @Override
+    public Balance deposit(Balance balance, BigDecimal amount) {
+        balance.deposit(amount);
+        return repository.save(balance);
+    }
 }

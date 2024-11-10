@@ -36,4 +36,8 @@ public class Balance extends AbstractEntity {
     public BigDecimal getAmount() {
         return amount;
     }
+
+    public void deposit(BigDecimal amount) {
+        this.amount = getAmount().add(amount);
+    }
 }
