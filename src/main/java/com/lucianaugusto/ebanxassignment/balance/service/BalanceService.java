@@ -6,8 +6,8 @@ import com.lucianaugusto.ebanxassignment.balance.model.Balance;
 import java.math.BigDecimal;
 
 public interface BalanceService {
-    Balance createBalance(Account account, BigDecimal amount);
-    Balance deposit(Balance balance, BigDecimal amount);
-    Balance withdraw(Balance balance, BigDecimal amount);
-    Balance sendTransfer(Balance balance, BigDecimal amount);
+    Balance createBalance(Account account, Integer amount);
+    Balance deposit(Balance balance, Integer amount);
+    Balance withdraw(Balance balance, Integer amount);
+    Balance sendTransfer(Balance balance, Integer amount);
 }

@@ -41,14 +41,14 @@ public class DepositExecutor implements OperationExecutor {
                 ));
     }
 
-    private OperationResult createAccountWithInitialBalance(String accountNumber, BigDecimal amount) {
+    private OperationResult createAccountWithInitialBalance(String accountNumber, Integer amount) {
         Account account = accountService.createAccount(accountNumber);
         Balance balance = balanceService.createBalance(account, amount);
 
         return new OperationResult(true, null, new BalanceInfo(balance));
     }
 
-    private OperationResult updateAccountBalance(Account account, BigDecimal amount) {
+    private OperationResult updateAccountBalance(Account account, Integer amount) {
         Balance balance = balanceService.deposit(account.getBalance(), amount);
         return new OperationResult(true, null, new BalanceInfo(balance));
     }

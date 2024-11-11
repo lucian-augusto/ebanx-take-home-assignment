@@ -17,7 +17,7 @@ public class Balance extends AbstractEntity {
     @JoinColumn(name = "account_id")
     private Account account;
 
-    private BigDecimal amount;
+    private Integer amount;
 
     Balance() {};
 
@@ -25,7 +25,7 @@ public class Balance extends AbstractEntity {
         this.account = account;
     }
 
-    public Balance(Account account, BigDecimal amount) {
+    public Balance(Account account, Integer amount) {
         this.account = account;
         this.amount = amount;
     }
@@ -34,7 +34,7 @@ public class Balance extends AbstractEntity {
         return account;
     }
 
-    public BigDecimal getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
@@ -42,15 +42,15 @@ public class Balance extends AbstractEntity {
         return Optional.of(getAccount().getAccountNumber()).orElse(null);
     }
 
-    public void deposit(BigDecimal amount) {
-        this.amount = getAmount().add(amount);
+    public void deposit(Integer amount) {
+        this.amount += amount;
     }
 
-    public void withdraw(BigDecimal amount) {
-        this.amount = getAmount().subtract(amount);
+    public void withdraw(Integer amount) {
+        this.amount -= amount;
     }
 
-    public void sendTransfer(BigDecimal amount) {
-        this.amount = getAmount().subtract(amount);
+    public void sendTransfer(Integer amount) {
+        this.amount -= amount;
     }
 }

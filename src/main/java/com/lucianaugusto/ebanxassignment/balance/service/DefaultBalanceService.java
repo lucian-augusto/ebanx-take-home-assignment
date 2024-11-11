@@ -17,25 +17,25 @@ public class DefaultBalanceService implements BalanceService {
     }
 
     @Override
-    public Balance createBalance(Account account, BigDecimal amount) {
+    public Balance createBalance(Account account, Integer amount) {
         Balance balance = new Balance(account, amount);
         return repository.save(balance);
     }
 
     @Override
-    public Balance deposit(Balance balance, BigDecimal amount) {
+    public Balance deposit(Balance balance, Integer amount) {
         balance.deposit(amount);
         return repository.save(balance);
     }
 
     @Override
-    public Balance withdraw(Balance balance, BigDecimal amount) {
+    public Balance withdraw(Balance balance, Integer amount) {
         balance.withdraw(amount);
         return repository.save(balance);
     }
 
     @Override
-    public Balance sendTransfer(Balance balance, BigDecimal amount) {
+    public Balance sendTransfer(Balance balance, Integer amount) {
         balance.sendTransfer(amount);
         return repository.save(balance);
     }

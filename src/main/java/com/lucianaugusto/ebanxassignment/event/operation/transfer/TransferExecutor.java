@@ -43,7 +43,7 @@ public class TransferExecutor implements OperationExecutor {
         );
     }
 
-    private OperationResult executeTransfer(Account origin, BigDecimal amount, String destinationAccountNumber) {
+    private OperationResult executeTransfer(Account origin, Integer amount, String destinationAccountNumber) {
         Balance balance = balanceService.sendTransfer(origin.getBalance(), amount);
         return new OperationResult(
                 true,

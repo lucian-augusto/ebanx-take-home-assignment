@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 
 public class OperationRequest {
     private final OperationTypeEnum type;
-    private final BigDecimal amount;
+    private final Integer amount;
     private String originAccountNumber;
     private String destinationAccountNumber;
 
-    public OperationRequest(OperationTypeEnum type, BigDecimal amount) {
+    public OperationRequest(OperationTypeEnum type, Integer amount) {
         this.type = type;
         this.amount = amount;
     }
@@ -17,7 +17,7 @@ public class OperationRequest {
         return type;
     }
 
-    public BigDecimal getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
