@@ -8,6 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @Entity
 public class Balance extends AbstractEntity {
@@ -37,7 +38,15 @@ public class Balance extends AbstractEntity {
         return amount;
     }
 
+    public String getAccountNumber() {
+        return Optional.of(getAccount().getAccountNumber()).orElse(null);
+    }
+
     public void deposit(BigDecimal amount) {
         this.amount = getAmount().add(amount);
+    }
+
+    public void withdraw(BigDecimal amount) {
+        this.amount = getAmount().subtract(amount);
     }
 }

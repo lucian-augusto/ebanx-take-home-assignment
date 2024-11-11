@@ -9,6 +9,7 @@ import com.lucianaugusto.ebanxassignment.event.operation.OperationRequest;
 import com.lucianaugusto.ebanxassignment.event.operation.OperationResult;
 import com.lucianaugusto.ebanxassignment.event.operation.OperationTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,10 +49,18 @@ public class EventController {
 
         OperationResult result = operationHandler.handle(operationRequest);
 
-        return ResponseEntity.ok(new EventHttpResponse(
-                null,
-                new EventAccountInfo(result.destination().accountNumber(), result.destination().amount())
-        ));
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(new EventHttpResponse(
+                    result.hasOrigin()
+                            ? new EventAccountInfo(result.origin().accountNumber(), result.origin().amount())
+                            : null,
+                    result.hasDestination()
+                            ? new EventAccountInfo(result.destination().accountNumber(), result.destination().amount())
+                            : null
+            ));
+        }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(0);
     }
 
     private void populateEventOperationMap() {
