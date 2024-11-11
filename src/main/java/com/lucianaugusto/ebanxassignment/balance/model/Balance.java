@@ -49,4 +49,8 @@ public class Balance extends AbstractEntity {
     public void withdraw(BigDecimal amount) {
         this.amount = getAmount().subtract(amount);
     }
+
+    public void sendTransfer(BigDecimal amount) {
+        this.amount = getAmount().subtract(amount);
+    }
 }

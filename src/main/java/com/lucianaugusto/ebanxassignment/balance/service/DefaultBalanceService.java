@@ -33,4 +33,10 @@ public class DefaultBalanceService implements BalanceService {
         balance.withdraw(amount);
         return repository.save(balance);
     }
+
+    @Override
+    public Balance sendTransfer(Balance balance, BigDecimal amount) {
+        balance.sendTransfer(amount);
+        return repository.save(balance);
+    }
 }
