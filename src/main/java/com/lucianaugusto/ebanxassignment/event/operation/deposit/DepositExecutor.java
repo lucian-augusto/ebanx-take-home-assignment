@@ -34,25 +34,22 @@ public class DepositExecutor implements OperationExecutor {
         Optional<Account> accountOptional = accountService
                 .findByAccountNumber(operationRequest.getDestinationAccountNumber());
 
-        if (accountOptional.isEmpty()) {
-            return createAccountWithInitialBalance(
+        return accountOptional.map(account -> updateAccountBalance(account, operationRequest.getAmount()))
+                .orElseGet(() -> createAccountWithInitialBalance(
                     operationRequest.getDestinationAccountNumber(),
                     operationRequest.getAmount()
-            );
-        }
-
-        return updateAccountBalance(accountOptional.get(), operationRequest.getAmount());
+                ));
     }
 
     private OperationResult createAccountWithInitialBalance(String accountNumber, BigDecimal amount) {
         Account account = accountService.createAccount(accountNumber);
         Balance balance = balanceService.createBalance(account, amount);
 
-        return new OperationResult(true, account.getAccountNumber(), balance.getAmount());
+        return new OperationResult(true, null, new BalanceInfo(balance));
     }
 
     private OperationResult updateAccountBalance(Account account, BigDecimal amount) {
         Balance balance = balanceService.deposit(account.getBalance(), amount);
-        return new OperationResult(true, account.getAccountNumber(), balance.getAmount());
+        return new OperationResult(true, null, new BalanceInfo(balance));
     }
 }

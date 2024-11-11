@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,10 +45,12 @@ public class EventController {
         );
         operationRequest.setOriginAccountNumber(request.origin());
         operationRequest.setDestinationAccountNumber(request.destination());
+
         OperationResult result = operationHandler.handle(operationRequest);
+
         return ResponseEntity.ok(new EventHttpResponse(
                 null,
-                new EventAccountInfo(result.destinationAccount(), result.destinationBalance())
+                new EventAccountInfo(result.destination().accountNumber(), result.destination().amount())
         ));
     }
 
