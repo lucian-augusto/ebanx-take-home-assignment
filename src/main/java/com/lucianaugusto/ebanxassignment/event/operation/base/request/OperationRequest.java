@@ -1,6 +1,6 @@
-package com.lucianaugusto.ebanxassignment.event.operation;
+package com.lucianaugusto.ebanxassignment.event.operation.base.request;
 
-import java.math.BigDecimal;
+import com.lucianaugusto.ebanxassignment.event.operation.base.enums.OperationTypeEnum;
 
 public class OperationRequest {
     private final OperationTypeEnum type;

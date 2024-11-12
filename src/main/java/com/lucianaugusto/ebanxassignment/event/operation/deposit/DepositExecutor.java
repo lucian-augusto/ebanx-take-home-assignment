@@ -4,10 +4,13 @@ import com.lucianaugusto.ebanxassignment.account.model.Account;
 import com.lucianaugusto.ebanxassignment.account.service.AccountService;
 import com.lucianaugusto.ebanxassignment.balance.model.Balance;
 import com.lucianaugusto.ebanxassignment.balance.service.BalanceService;
-import com.lucianaugusto.ebanxassignment.event.operation.*;
+import com.lucianaugusto.ebanxassignment.event.operation.base.enums.OperationTypeEnum;
+import com.lucianaugusto.ebanxassignment.event.operation.base.orchestrator.OperationExecutor;
+import com.lucianaugusto.ebanxassignment.event.operation.base.request.OperationRequest;
+import com.lucianaugusto.ebanxassignment.event.operation.base.result.BalanceInfo;
+import com.lucianaugusto.ebanxassignment.event.operation.base.result.OperationResult;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 
 @Component

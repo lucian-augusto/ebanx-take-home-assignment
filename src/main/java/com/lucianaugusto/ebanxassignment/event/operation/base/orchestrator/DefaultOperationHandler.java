@@ -1,5 +1,8 @@
-package com.lucianaugusto.ebanxassignment.event.operation;
+package com.lucianaugusto.ebanxassignment.event.operation.base.orchestrator;
 
+import com.lucianaugusto.ebanxassignment.event.operation.base.request.OperationRequest;
+import com.lucianaugusto.ebanxassignment.event.operation.base.result.OperationResult;
+import com.lucianaugusto.ebanxassignment.event.operation.base.enums.OperationTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
