@@ -1,11 +1,12 @@
 package com.lucianaugusto.ebanxassignment.event.http.controller;
 
+import com.lucianaugusto.ebanxassignment.base.http.controller.BaseController;
 import com.lucianaugusto.ebanxassignment.event.http.enums.EventTypeEnum;
 import com.lucianaugusto.ebanxassignment.event.http.request.EventHttpRequest;
 import com.lucianaugusto.ebanxassignment.event.http.response.EventHttpResponse;
 import com.lucianaugusto.ebanxassignment.event.http.response.EventAccountInfo;
-import com.lucianaugusto.ebanxassignment.event.operation.OperationHandler;
-import com.lucianaugusto.ebanxassignment.event.operation.OperationRequest;
+import com.lucianaugusto.ebanxassignment.event.operation.orchestrator.OperationHandler;
+import com.lucianaugusto.ebanxassignment.event.operation.orchestrator.OperationRequest;
 import com.lucianaugusto.ebanxassignment.event.operation.OperationResult;
 import com.lucianaugusto.ebanxassignment.event.operation.OperationTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("event")
-public class EventController {
+public class EventController extends BaseController {
 
     private final OperationHandler operationHandler;
 

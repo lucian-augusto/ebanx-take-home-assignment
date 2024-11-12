@@ -21,10 +21,6 @@ public class Balance extends AbstractEntity {
 
     Balance() {};
 
-    public Balance(Account account) {
-        this.account = account;
-    }
-
     public Balance(Account account, Integer amount) {
         this.account = account;
         this.amount = amount;

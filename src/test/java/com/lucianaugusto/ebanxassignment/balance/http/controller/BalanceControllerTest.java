@@ -1,7 +1,9 @@
-package com.lucianaugusto.ebanxassignment.balance.controller;
+package com.lucianaugusto.ebanxassignment.balance.http.controller;
 
+import com.lucianaugusto.ebanxassignment.account.error.AccountNotFoundException;
 import com.lucianaugusto.ebanxassignment.account.model.Account;
 import com.lucianaugusto.ebanxassignment.account.service.AccountService;
+import com.lucianaugusto.ebanxassignment.balance.http.controller.BalanceController;
 import com.lucianaugusto.ebanxassignment.balance.model.Balance;
 import com.lucianaugusto.ebanxassignment.base.BaseTest;
 import org.junit.jupiter.api.Assertions;
@@ -47,9 +49,6 @@ class BalanceControllerTest extends BaseTest {
         Optional<Account> accountOptional = Optional.empty();
 
         Mockito.when(service.findByAccountNumber(accountNumber)).thenReturn(accountOptional);
-        ResponseEntity<?> response = controller.getBalance(accountNumber);
-
-        Assertions.assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        Assertions.assertEquals(0, response.getBody());
+        Assertions.assertThrows(AccountNotFoundException.class, () -> controller.getBalance(accountNumber));
     }
 }
