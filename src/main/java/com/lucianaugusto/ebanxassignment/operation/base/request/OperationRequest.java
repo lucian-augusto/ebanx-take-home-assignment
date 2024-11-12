@@ -1,6 +1,6 @@
-package com.lucianaugusto.ebanxassignment.event.operation.base.request;
+package com.lucianaugusto.ebanxassignment.operation.base.request;
 
-import com.lucianaugusto.ebanxassignment.event.operation.base.enums.OperationTypeEnum;
+import com.lucianaugusto.ebanxassignment.operation.base.enums.OperationTypeEnum;
 
 public class OperationRequest {
     private final OperationTypeEnum type;

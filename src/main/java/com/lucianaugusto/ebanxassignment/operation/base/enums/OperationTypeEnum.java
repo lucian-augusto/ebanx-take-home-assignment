@@ -1,4 +1,4 @@
-package com.lucianaugusto.ebanxassignment.event.operation.base.enums;
+package com.lucianaugusto.ebanxassignment.operation.base.enums;
 
 public enum OperationTypeEnum {
     DEPOSIT,

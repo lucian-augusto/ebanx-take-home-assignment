@@ -1,15 +1,15 @@
-package com.lucianaugusto.ebanxassignment.event.operation.withdraw;
+package com.lucianaugusto.ebanxassignment.operation.withdraw;
 
 import com.lucianaugusto.ebanxassignment.account.error.AccountNotFoundException;
 import com.lucianaugusto.ebanxassignment.account.model.Account;
 import com.lucianaugusto.ebanxassignment.account.service.AccountService;
 import com.lucianaugusto.ebanxassignment.balance.model.Balance;
 import com.lucianaugusto.ebanxassignment.balance.service.BalanceService;
-import com.lucianaugusto.ebanxassignment.event.operation.base.enums.OperationTypeEnum;
-import com.lucianaugusto.ebanxassignment.event.operation.base.orchestrator.OperationExecutor;
-import com.lucianaugusto.ebanxassignment.event.operation.base.request.OperationRequest;
-import com.lucianaugusto.ebanxassignment.event.operation.base.result.BalanceInfo;
-import com.lucianaugusto.ebanxassignment.event.operation.base.result.OperationResult;
+import com.lucianaugusto.ebanxassignment.operation.base.enums.OperationTypeEnum;
+import com.lucianaugusto.ebanxassignment.operation.base.orchestration.OperationExecutor;
+import com.lucianaugusto.ebanxassignment.operation.base.request.OperationRequest;
+import com.lucianaugusto.ebanxassignment.operation.base.result.BalanceInfo;
+import com.lucianaugusto.ebanxassignment.operation.base.result.OperationResult;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

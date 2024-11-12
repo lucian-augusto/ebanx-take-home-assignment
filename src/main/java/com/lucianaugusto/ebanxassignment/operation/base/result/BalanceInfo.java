@@ -1,4 +1,4 @@
-package com.lucianaugusto.ebanxassignment.event.operation.base.result;
+package com.lucianaugusto.ebanxassignment.operation.base.result;
 
 import com.lucianaugusto.ebanxassignment.balance.model.Balance;
 

@@ -1,4 +1,4 @@
-package com.lucianaugusto.ebanxassignment.event.operation.base.result;
+package com.lucianaugusto.ebanxassignment.operation.base.result;
 
 public record OperationResult(
     boolean isSuccess,
