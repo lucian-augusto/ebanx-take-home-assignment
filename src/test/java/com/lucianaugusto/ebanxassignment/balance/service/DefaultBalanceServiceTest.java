@@ -12,8 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class DefaultBalanceServiceTest extends BaseTest {
 
     private Account account;
@@ -78,5 +76,17 @@ class DefaultBalanceServiceTest extends BaseTest {
 
     @Test
     void sendTransfer() {
+        Integer amount = 10;
+        Balance expectedBalance = new Balance(account, 0);
+        Balance balance = new Balance(account, amount);
+
+        ArgumentCaptor<Balance> captor = ArgumentCaptor.forClass(Balance.class);
+
+        Mockito.when(repository.save(captor.capture())).thenReturn(expectedBalance);
+        Balance balanceAfterDeposit = service.sendTransfer(balance, amount);
+
+        Assertions.assertEquals(0, balanceAfterDeposit.getAmount());
+        Assertions.assertEquals(account, captor.getValue().getAccount());
+        Assertions.assertEquals(0, captor.getValue().getAmount());
     }
 }
