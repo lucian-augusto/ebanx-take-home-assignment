@@ -12,10 +12,6 @@ public record EventHttpRequest(EventTypeEnum type, String origin, String destina
             return false;
         }
 
-        if (origin == null && destination == null) {
-            return false;
-        }
-
-        return true;
+        return origin != null || destination != null;
     }
 }

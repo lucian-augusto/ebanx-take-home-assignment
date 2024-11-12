@@ -5,8 +5,6 @@ import com.lucianaugusto.ebanxassignment.balance.model.Balance;
 import com.lucianaugusto.ebanxassignment.balance.repository.BalanceRepository;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-
 @Service
 public class DefaultBalanceService implements BalanceService {
 

@@ -15,7 +15,7 @@ public class Account extends AbstractEntity {
     @OneToOne(mappedBy = "account")
     private Balance balance;
 
-    Account() {};
+    Account() {}
 
     public Account(String accountNumber) {
         this.accountNumber = accountNumber;

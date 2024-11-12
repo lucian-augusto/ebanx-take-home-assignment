@@ -2,12 +2,10 @@ package com.lucianaugusto.ebanxassignment.balance.model;
 
 import com.lucianaugusto.ebanxassignment.account.model.Account;
 import com.lucianaugusto.ebanxassignment.base.model.AbstractEntity;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 
 @Entity
@@ -19,7 +17,7 @@ public class Balance extends AbstractEntity {
 
     private Integer amount;
 
-    Balance() {};
+    Balance() {}
 
     public Balance(Account account, Integer amount) {
         this.account = account;
