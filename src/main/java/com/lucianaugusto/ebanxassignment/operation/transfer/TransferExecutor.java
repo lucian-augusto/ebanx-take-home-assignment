@@ -35,21 +35,23 @@ public class TransferExecutor implements OperationExecutor {
     public OperationResult execute(OperationRequest operationRequest) {
         Optional<Account> originAccountOptional = accountService
                 .findByAccountNumber(operationRequest.getOriginAccountNumber());
-        return originAccountOptional.map(
-                origin -> executeTransfer(
-                        origin,
-                        operationRequest.getAmount(),
-                        operationRequest.getDestinationAccountNumber()
-                )
-        ).orElseThrow(AccountNotFoundException::new);
+        Optional<Account> destinationAccountOptional = accountService
+                .findByAccountNumber(operationRequest.getDestinationAccountNumber());
+
+        if (originAccountOptional.isEmpty() || destinationAccountOptional.isEmpty()) {
+            throw new AccountNotFoundException();
+        }
+
+        return executeTransfer(originAccountOptional.get(), destinationAccountOptional.get(), operationRequest.getAmount());
     }
 
-    private OperationResult executeTransfer(Account origin, Integer amount, String destinationAccountNumber) {
-        Balance balance = balanceService.sendTransfer(origin.getBalance(), amount);
+    private OperationResult executeTransfer(Account origin, Account destination, Integer amount) {
+        Balance originBalance = balanceService.sendTransfer(origin.getBalance(), amount);
+        Balance destinationBalance = balanceService.receiveTransfer(destination.getBalance(), amount);
         return new OperationResult(
                 true,
-                new BalanceInfo(balance.getAccountNumber(), balance.getAmount()),
-                new BalanceInfo(destinationAccountNumber, amount)
+                new BalanceInfo(originBalance.getAccountNumber(), originBalance.getAmount()),
+                new BalanceInfo(destinationBalance.getAccountNumber(), destinationBalance.getAmount())
         );
     }
 }

@@ -37,14 +37,26 @@ public class Balance extends AbstractEntity {
     }
 
     public void deposit(Integer amount) {
-        this.amount += amount;
+        addAmount(amount);
     }
 
     public void withdraw(Integer amount) {
-        this.amount -= amount;
+        subtractAmount(amount);
     }
 
     public void sendTransfer(Integer amount) {
+        subtractAmount(amount);
+    }
+
+    public void receiveTransfer(Integer amount) {
+        addAmount(amount);
+    }
+
+    private void addAmount(Integer amount) {
+        this.amount += amount;
+    }
+
+    private void subtractAmount(Integer amount) {
         this.amount -= amount;
     }
 }

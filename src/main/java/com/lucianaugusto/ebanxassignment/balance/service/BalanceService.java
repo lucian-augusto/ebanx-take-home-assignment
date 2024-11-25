@@ -8,4 +8,5 @@ public interface BalanceService {
     Balance deposit(Balance balance, Integer amount);
     Balance withdraw(Balance balance, Integer amount);
     Balance sendTransfer(Balance balance, Integer amount);
+    Balance receiveTransfer(Balance balance, Integer amount);
 }

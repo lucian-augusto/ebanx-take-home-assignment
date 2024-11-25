@@ -49,4 +49,15 @@ class BalanceTest extends BaseTest {
 
         Assertions.assertEquals(0, balance.getAmount());
     }
+
+    @Test
+    void receiveTransfer() {
+        String accountNumber = "777";
+        Account account = new Account(accountNumber);
+        Balance balance = new Balance(account, 0);
+
+        balance.receiveTransfer(10);
+
+        Assertions.assertEquals(10, balance.getAmount());
+    }
 }

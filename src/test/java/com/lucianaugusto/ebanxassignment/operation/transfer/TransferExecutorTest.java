@@ -35,34 +35,58 @@ class TransferExecutorTest extends BaseTest {
     }
 
     @Test
-    void executeNonExistingAccount() {
-        String accountNumber = "7777";
+    void executeNonExistingOriginAccount() {
+        String originAccountNumber = "7777";
+        String destinationAccountNumber = "999";
+        Account destinationAccount = new Account(destinationAccountNumber);
         OperationRequest request = new OperationRequest(OperationTypeEnum.TRANSFER, 10);
-        request.setOriginAccountNumber(accountNumber);
+        request.setOriginAccountNumber(originAccountNumber);
+        request.setDestinationAccountNumber(destinationAccountNumber);
 
-        Mockito.when(accountService.findByAccountNumber(accountNumber)).thenReturn(Optional.empty());
+        Mockito.when(accountService.findByAccountNumber(originAccountNumber)).thenReturn(Optional.empty());
+        Mockito.when(accountService.findByAccountNumber(destinationAccountNumber)).thenReturn(Optional.of(destinationAccount));
         Assertions.assertThrows(AccountNotFoundException.class, () -> executor.execute(request));
     }
 
     @Test
-    void executeExistingAccount() throws NoSuchFieldException, IllegalAccessException {
+    void executeNonExistingDestinationAccount() {
+        String originAccountNumber = "7777";
+        String destinationAccountNumber = "999";
+        Account originAccount = new Account(originAccountNumber);
+        OperationRequest request = new OperationRequest(OperationTypeEnum.TRANSFER, 10);
+        request.setOriginAccountNumber(originAccountNumber);
+        request.setDestinationAccountNumber(destinationAccountNumber);
+
+        Mockito.when(accountService.findByAccountNumber(originAccountNumber)).thenReturn(Optional.of(originAccount));
+        Mockito.when(accountService.findByAccountNumber(destinationAccountNumber)).thenReturn(Optional.empty());
+        Assertions.assertThrows(AccountNotFoundException.class, () -> executor.execute(request));
+    }
+
+    @Test
+    void executeExistingAccounts() throws NoSuchFieldException, IllegalAccessException {
         String accountNumber = "7777";
         String destinationNumber = "999";
         Integer amount = 10;
-        Account account = new Account(accountNumber);
-        Balance balance = new Balance(account, amount);
-        Balance expectedBalance = new Balance(account, 0);
-        Field accountBalanceField = account.getClass().getDeclaredField("balance");
+        Account originAccount = new Account(accountNumber);
+        Balance originBalance = new Balance(originAccount, amount);
+        Balance expectedOriginBalance = new Balance(originAccount, 0);
+        Account destinationAccount = new Account(destinationNumber);
+        Balance destinationBalance = new Balance(destinationAccount, 0);
+        Balance expectedDestinationBalance = new Balance(destinationAccount, amount);
+        Field accountBalanceField = originAccount.getClass().getDeclaredField("balance");
         accountBalanceField.setAccessible(true);
-        accountBalanceField.set(account, balance);
+        accountBalanceField.set(originAccount, originBalance);
+        accountBalanceField.set(destinationAccount, destinationBalance);
         accountBalanceField.setAccessible(false);
 
         OperationRequest request = new OperationRequest(OperationTypeEnum.TRANSFER, 10);
         request.setOriginAccountNumber(accountNumber);
         request.setDestinationAccountNumber(destinationNumber);
 
-        Mockito.when(accountService.findByAccountNumber(accountNumber)).thenReturn(Optional.of(account));
-        Mockito.when(balanceService.sendTransfer(balance, amount)).thenReturn(expectedBalance);
+        Mockito.when(accountService.findByAccountNumber(accountNumber)).thenReturn(Optional.of(originAccount));
+        Mockito.when(accountService.findByAccountNumber(destinationNumber)).thenReturn(Optional.of(destinationAccount));
+        Mockito.when(balanceService.sendTransfer(originBalance, amount)).thenReturn(expectedOriginBalance);
+        Mockito.when(balanceService.receiveTransfer(destinationBalance, amount)).thenReturn(expectedDestinationBalance);
         OperationResult result = executor.execute(request);
 
         Assertions.assertTrue(result.isSuccess());

@@ -37,4 +37,10 @@ public class DefaultBalanceService implements BalanceService {
         balance.sendTransfer(amount);
         return repository.save(balance);
     }
+
+    @Override
+    public Balance receiveTransfer(Balance balance, Integer amount) {
+        balance.receiveTransfer(amount);
+        return repository.save(balance);
+    }
 }

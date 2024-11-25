@@ -67,9 +67,9 @@ class DefaultBalanceServiceTest extends BaseTest {
         ArgumentCaptor<Balance> captor = ArgumentCaptor.forClass(Balance.class);
 
         Mockito.when(repository.save(captor.capture())).thenReturn(expectedBalance);
-        Balance balanceAfterDeposit = service.withdraw(balance, amount);
+        Balance balanceAfterWithdraw = service.withdraw(balance, amount);
 
-        Assertions.assertEquals(0, balanceAfterDeposit.getAmount());
+        Assertions.assertEquals(0, balanceAfterWithdraw.getAmount());
         Assertions.assertEquals(account, captor.getValue().getAccount());
         Assertions.assertEquals(0, captor.getValue().getAmount());
     }
@@ -83,10 +83,27 @@ class DefaultBalanceServiceTest extends BaseTest {
         ArgumentCaptor<Balance> captor = ArgumentCaptor.forClass(Balance.class);
 
         Mockito.when(repository.save(captor.capture())).thenReturn(expectedBalance);
-        Balance balanceAfterDeposit = service.sendTransfer(balance, amount);
+        Balance balanceAfterTransfer = service.sendTransfer(balance, amount);
 
-        Assertions.assertEquals(0, balanceAfterDeposit.getAmount());
+        Assertions.assertEquals(0, balanceAfterTransfer.getAmount());
         Assertions.assertEquals(account, captor.getValue().getAccount());
         Assertions.assertEquals(0, captor.getValue().getAmount());
+        Assertions.assertEquals(expectedBalance, balanceAfterTransfer);
+    }
+
+    @Test
+    void receiveTransfer() {
+        Integer amount = 10;
+        Balance expectedBalance = new Balance(account, amount);
+        Balance balance = new Balance(account, 0);
+
+        ArgumentCaptor<Balance> captor = ArgumentCaptor.forClass(Balance.class);
+
+        Mockito.when(repository.save(captor.capture())).thenReturn(expectedBalance);
+        Balance balanceAfterTransfer = service.receiveTransfer(balance, amount);
+
+        Assertions.assertEquals(amount, balanceAfterTransfer.getAmount());
+        Assertions.assertEquals(account, captor.getValue().getAccount());
+        Assertions.assertEquals(amount, captor.getValue().getAmount());
     }
 }
