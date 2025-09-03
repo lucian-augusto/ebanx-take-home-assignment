@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.lucianaugusto</groupId>
 	<artifactId>ebanx-assignment</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>EBANX Take Home Assignment</name>
 	<description>Take home assignment part of EBANX&apos;s technical evaluation</description>
 	<url/>
