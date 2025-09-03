@@ -16,7 +16,6 @@ import java.util.Optional;
 
 @Component
 public class TransferExecutor implements OperationExecutor {
-    private static final OperationTypeEnum type = OperationTypeEnum.TRANSFER;
 
     private final AccountService accountService;
     private final BalanceService balanceService;
@@ -28,7 +27,7 @@ public class TransferExecutor implements OperationExecutor {
 
     @Override
     public OperationTypeEnum getOperationType() {
-        return type;
+        return OperationTypeEnum.TRANSFER;
     }
 
     @Override

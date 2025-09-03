@@ -27,7 +27,6 @@ public class EventHttpResponseSerializer extends JsonSerializer<EventHttpRespons
         }
 
         if (response.destination() != null) {
-
             jsonGenerator.writeRaw("\"destination\":");
             serializeEventAccountInfo(response.destination(), jsonGenerator);
         }

@@ -17,8 +17,6 @@ import java.util.Optional;
 @Component
 public class WithdrawExecutor implements OperationExecutor {
 
-    private static final OperationTypeEnum type = OperationTypeEnum.WITHDRAW;
-
     private final AccountService accountService;
 
     private final BalanceService balanceService;
@@ -30,7 +28,7 @@ public class WithdrawExecutor implements OperationExecutor {
 
     @Override
     public OperationTypeEnum getOperationType() {
-        return type;
+        return OperationTypeEnum.WITHDRAW;
     }
 
     @Override
