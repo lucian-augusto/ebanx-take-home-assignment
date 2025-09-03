@@ -5,6 +5,8 @@ import com.lucianaugusto.ebanxassignment.base.model.AbstractEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Account extends AbstractEntity {
@@ -13,6 +15,7 @@ public class Account extends AbstractEntity {
     private String accountNumber;
 
     @OneToOne(mappedBy = "account")
+    @Cascade(CascadeType.ALL)
     private Balance balance;
 
     Account() {}
