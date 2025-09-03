@@ -1,5 +1,5 @@
 # EBANX Take Home Assignment
-[![Build](https://github.com/lucian-augusto/ebanx-take-home-assignment/actions/workflows/build.yml/badge.svg)](https://github.com/lucian-augusto/ebanx-take-home-assignment/actions/workflows/build.yml)
+[![Build](https://github.com/lucian-augusto/ebanx-take-home-assignment/actions/workflows/Build.yml/badge.svg)](https://github.com/lucian-augusto/ebanx-take-home-assignment/actions/workflows/Build.yml)
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
 ![Apache Maven](https://img.shields.io/badge/Apache%20Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white)
@@ -13,7 +13,7 @@
 - [Instructions](#instructions)
   - [Cloning the Project](#cloning-the-project)
   - [Building the Application](#building-the-application)
-  - [Running the Application on a Local Mahcine](#running-the-application-on-a-local-machine)
+  - [Running the Application on a Local Machine](#running-the-application-on-a-local-machine)
 
 ## About this Project
 This project was created as a solution for EBANX's technical evaluation.
