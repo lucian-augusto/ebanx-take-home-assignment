@@ -13,7 +13,7 @@
 - [Instructions](#instructions)
   - [Cloning the Project](#cloning-the-project)
   - [Building the Application](#building-the-application)
-  - [Running the Application on a Local Mahcine](#running-the-application-on-a-local-machine)
+  - [Running the Application on a Local Machine](#running-the-application-on-a-local-machine)
 
 ## About this Project
 This project was created as a solution for EBANX's technical evaluation.
