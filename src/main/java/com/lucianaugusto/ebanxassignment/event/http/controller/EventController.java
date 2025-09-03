@@ -50,18 +50,7 @@ public class EventController extends BaseController {
 
         OperationResult result = operationHandler.handle(operationRequest);
 
-        if (result.isSuccess()) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(new EventHttpResponse(
-                    result.hasOrigin()
-                            ? new EventAccountInfo(result.origin().accountNumber(), result.origin().amount())
-                            : null,
-                    result.hasDestination()
-                            ? new EventAccountInfo(result.destination().accountNumber(), result.destination().amount())
-                            : null
-            ));
-        }
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(0);
+        return generateEventResponse(result);
     }
 
     private void populateEventOperationMap() {
@@ -70,6 +59,26 @@ public class EventController extends BaseController {
 
     private OperationTypeEnum convertEventTypeToOperationType(EventTypeEnum eventType) {
         return OperationTypeEnum.valueOf(eventType.name().toUpperCase());
+    }
+
+    private ResponseEntity<?> generateEventResponse(OperationResult result) {
+        if (result.isSuccess()) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(generateEventHttpResponseFromOperationResult(result));
+
+        }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(0);
+    }
+
+    private EventHttpResponse generateEventHttpResponseFromOperationResult(OperationResult result) {
+        return new EventHttpResponse(
+                result.hasOrigin()
+                        ? new EventAccountInfo(result.origin().accountNumber(), result.origin().amount())
+                        : null,
+                result.hasDestination()
+                        ? new EventAccountInfo(result.destination().accountNumber(), result.destination().amount())
+                        : null
+        );
     }
 }
 
