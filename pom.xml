@@ -18,13 +18,20 @@
 		<license/>
 	</licenses>
 	<developers>
-		<developer/>
+    <developer>
+      <id>lucian-augusto</id>
+      <name>Lucian Spena Augusto</name>
+      <roles>
+        <role>Owner</role>
+        <role>Developer</role>
+      </roles>
+    </developer>
 	</developers>
 	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
+    <connection>scm:git:https://github.com/lucian-augusto/ebanx-take-home-assignment.git</connection>
+    <developerConnection>scm:git:git@github.com:lucian-augusto/ebanx-take-home-assignment.git</developerConnection>
+    <url>https://github.com/lucian-augusto/ebanx-take-home-assignment</url>
+    <tag>HEAD</tag>
 	</scm>
 	<properties>
 		<java.version>21</java.version>
